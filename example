@@ -1,51 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:orientation="vertical" >
 
-public class MySimpleArrayAdapter extends ArrayAdapter {
-    private final Context context;
-    private final List<ActaHormigon> values;
+    <!-- Single ListItem -->
 
-    public MySimpleArrayAdapter(Context context, List<ActaHormigon> values) {
-        super(context, R.layout.rowlayout, values);
-        this.context = context;
-        this.values = values;
-    }
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_launcher" >
+    </ImageView>
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.list_item, parent, false);
-        TextView textView1 = (TextView) rowView.findViewById(R.id.text1);
-        TextView textView2 = (TextView) rowView.findViewById(R.id.text2);
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-        String NumeroActa = "";
+    <TextView
+        android:id="@+id/label1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Acta:"
+        android:layout_marginLeft="56dp">
+    </TextView>
 
-        switch (values.get(position).ActaAreaID){
-            case "1"://MECANICA DE SUELOS
-                NumeroActa = values.get(position).ActaNumero+"DM";
-                break;
-            case "5"://ARIDOS
-                NumeroActa = values.get(position).ActaNumero+"DM";
-                break;
-            case "2"://HORMIGON
-                NumeroActa = values.get(position).ActaNumero+"DH";
-                break;
-            case "3"://ASFALTO
-                NumeroActa = values.get(position).ActaNumero+"DA";
-                break;
-        }
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/label1"
+        android:text="@+id/text1">
+    </TextView>
 
-        textView1.setText(NumeroActa);
-        textView2.setText(values.get(position).ActaOrdenNumero+" "+ com.mandylion.helpers.Utility.getSucursal(values.get(position).SucursalID));
-        // Change the icon
-        String s = values.get(position).Estado;
-        if (s.startsWith("NO SINCRONIZADO")) {
-            imageView.setImageResource(R.drawable.ic_action_refresh);
-        } else if (s.startsWith("BORRADOR")) {
-            imageView.setImageResource(R.drawable.draft);
-        }else if(s.startsWith("SINCRONIZADO")){
-            imageView.setImageResource(R.drawable.success);
-        }
+    <TextView
+        android:id="@+id/label2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Informe:"
+        android:layout_alignLeft="@+id/label1"
+        android:layout_below="@+id/text1">
+    </TextView>
 
-        return rowView;
-    }
-}
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/label2"
+        android:layout_below="@+id/text1"
+        android:text="@+id/text2">
+    </TextView>
+
+</RelativeLayout>
